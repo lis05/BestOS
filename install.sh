@@ -23,9 +23,9 @@ sudo systemctl enable sddm
 
 sudo pacman -S --noconfirm --needed qtile                           # Qtile
 sudo mkdir /etc/sddm.conf.d
-sudo cp ../files/sddm-config /etc/sddm.conf.d/default.conf
+sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
-sudo pacman -S --noconfirm --needed \                               # software
+sudo pacman -S --noconfirm --needed \                               
 xterm terminology firefox telegram-dekstop                           
 
 echo "DONE! Reboot to see the changes"
