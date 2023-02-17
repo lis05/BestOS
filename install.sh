@@ -25,8 +25,10 @@ sudo pacman -S --noconfirm --needed qtile                           # Qtile
 sudo mkdir /etc/sddm.conf.d
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
-sudo pacman -S --noconfirm --needed \                               
-xterm terminology firefox telegram-dekstop                           
+sudo pacman -S --noconfirm --needed xterm
+sudo pacman -S --noconfirm --needed terminology
+sudo pacman -S --noconfirm --needed firefox
+sudo pacman -S --noconfirm --needed telegram-dekstop                           
 
 echo "DONE! Reboot to see the changes"
 
