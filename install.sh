@@ -13,27 +13,35 @@ cd pamac-aur
 makepkg -si --noconfirm
 cd ..
 
+
+function pacman-install() {
+    for package in "$@"; do
+        echo -e "\033[1;35mInstalling $package (pacman)\033[0m"
+        sudo pacman -S --noconfirm --needed "$package"
+    done
+}
+function pamac-install() {
+    for package in "$@"; do
+        echo -e "\033[1;35mInstalling $package (pamac)\033[0m"
+        sudo pamac install --no-confirm "$package"
+    done
+}
 #! basic software
-
-sudo pacman -S --noconfirm --needed xorg-server                     # Xorg
-sudo pacman -S --noconfirm --needed xf86-video-amdgpu               # video drivers
-sudo pacman -S --noconfirm --needed mesa                            # OpenGL
-sudo pacman -S --noconfirm --needed lib32-mesa                      # OpenGL  
-
-sudo pacman -S --noconfirm --needed sddm                            # display manager
+# Xorg, video drivers, openGL
+pacman-install xorg-server xf86-video-amdgpu mesa lib32-mesa   
+     
+# display manager
+pacman-install sddm                                                 
 sudo systemctl enable sddm
 
-sudo pacman -S --noconfirm --needed qtile                           # Qtile
+# Qtile
+pacman-install qtile                           
 sudo mkdir /etc/sddm.conf.d
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
 #! software
-sudo pacman -S --noconfirm --needed xterm
-sudo pacman -S --noconfirm --needed terminology
-sudo pacman -S --noconfirm --needed firefox
-sudo pacman -S --noconfirm --needed telegram-dekstop      
-
-sudo pacman -S --noconfirm --needed lolcat                           
+pacman-install xterm terminology firefox telegram-dekstop  
+pacman-install lolcat                           
 
 echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
 
