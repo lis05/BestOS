@@ -2,6 +2,12 @@
 
 # this script completelly installs BestOS to a freshly installed minimal Arch Linux system
 
+#! creating all neccessary directories      
+sudo mkdir /etc/sddm.conf.d
+sudo mkdir $HOME/scripts
+sudo mkdir $HOME/software
+
+
 #! PAMAC
 sudo pacman -S --noconfirm --needed git base-devel
 git clone https://aur.archlinux.org/libpamac-aur.git
@@ -26,17 +32,17 @@ function pamac-install() {
         sudo pamac install --no-confirm "$package"
     done
 }
+
 #! basic software
 # Xorg, video drivers, openGL
-pacman-install xorg-server xf86-video-amdgpu mesa lib32-mesa   
-     
+pacman-install xorg-server xf86-video-amdgpu mesa 
+
 # display manager
 pacman-install sddm                                                 
 sudo systemctl enable sddm
 
 # Qtile
-pacman-install qtile                           
-sudo mkdir /etc/sddm.conf.d
+pacman-install qtile         
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
 #! software
