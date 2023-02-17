@@ -6,7 +6,7 @@
 sudo pacman -S --noconfirm --needed git base-devel
 git clone https://aur.archlinux.org/libpamac-aur.git
 cd libpamac-aur
-makepkg -si -- noconfirm
+makepkg -si --noconfirm
 cd ..
 git clone https://aur.archlinux.org/pamac-aur.git
 cd pamac-aur
