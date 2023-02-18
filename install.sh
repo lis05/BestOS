@@ -50,9 +50,15 @@ pacman-install awesome
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
 #! software
-pacman-install xterm terminology 
-pacman-install firefox 
-pacman-install telegram-dekstop  
+pacman-install xterm terminology                            # terminals
+pacman-install firefox                                      # webbrowsers
+pamac-install kate micro vim                                # text editors  
+pacman-install telegram-dekstop                             # messagers
+pamac-install brightnessctl                             
+pamac-install flameshot                                     # screenshot tool
+pamac-install rofi                                     
+pamac-install rofi-pass                                   
+cp files/change-lang.sh $HOME/scripts/change-lang.sh
 pacman-install lolcat             
 
 # system-stats-server for awesome widgets
