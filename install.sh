@@ -41,8 +41,8 @@ pacman-install xorg-server xf86-video-amdgpu mesa
 pacman-install sddm                                                 
 sudo systemctl enable sddm
 
-# Qtile
-pacman-install qtile         
+# AwesomeWM
+pacman-install awesome         
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
 #! software
