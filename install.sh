@@ -42,21 +42,24 @@ pacman-install xorg-server xf86-video-amdgpu mesa
 pacman-install sddm                                                 
 sudo systemctl enable sddm
 
-pamac-install python3
+# python
+pamac-install python3 python-pip
 
 # AwesomeWM
 pacman-install awesome         
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
 #! software
-pacman-install xterm terminology firefox telegram-dekstop  
+pacman-install xterm terminology 
+pacman-install firefox 
+pacman-install telegram-dekstop  
 pacman-install lolcat             
 
 # system-stats-server for awesome widgets
 cd $HOME/software
 git clone https://github.com/lis05/system-stats-server
 cd system-stats-server
-bash install
+bash install.sh
 cd $HOME/BestOS
 
 echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
