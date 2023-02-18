@@ -6,6 +6,7 @@
 sudo mkdir /etc/sddm.conf.d
 sudo mkdir $HOME/scripts
 sudo mkdir $HOME/software
+sudo mkdir $HOME/.config
 
 
 #! PAMAC
@@ -47,7 +48,14 @@ sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
 #! software
 pacman-install xterm terminology firefox telegram-dekstop  
-pacman-install lolcat                           
+pacman-install lolcat             
+
+# system-stats-server for awesome widgets
+cd $HOME/software
+git clone https://github.com/lis05/system-stats-server
+cd system-stats-server
+sudo bash install
+cd $HOME/BestOS
 
 echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
 
