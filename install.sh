@@ -4,9 +4,9 @@
 
 #! creating all neccessary directories      
 sudo mkdir /etc/sddm.conf.d
-sudo mkdir $HOME/scripts
-sudo mkdir $HOME/software
-sudo mkdir $HOME/.config
+mkdir $HOME/scripts
+mkdir $HOME/software
+mkdir $HOME/.config
 
 
 #! PAMAC
@@ -42,6 +42,8 @@ pacman-install xorg-server xf86-video-amdgpu mesa
 pacman-install sddm                                                 
 sudo systemctl enable sddm
 
+pamac-install python3
+
 # AwesomeWM
 pacman-install awesome         
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
@@ -54,7 +56,7 @@ pacman-install lolcat
 cd $HOME/software
 git clone https://github.com/lis05/system-stats-server
 cd system-stats-server
-sudo bash install
+bash install
 cd $HOME/BestOS
 
 echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
