@@ -87,7 +87,7 @@ rsync -r files/scripts/ $HOME/scripts/
 cd files/software
 
 cd random-wallpaper
-sudo bash install
+bash install.sh
 cd ..
 
 
