@@ -7,8 +7,6 @@ sudo mkdir /etc/sddm.conf.d
 mkdir $HOME/scripts
 mkdir $HOME/software
 mkdir $HOME/.config
-mkdir $HOME/.config/picom
-mkdir $HOME/.config/awesome
 
 
 #! PAMAC
@@ -61,21 +59,13 @@ pamac-install telegram-desktop
 pamac-install brightnessctl                       
 pamac-install flameshot                                   
 pamac-install rofi rofi-pass   
-                             
-cp files/scripts/change-lang.sh $HOME/scripts/change-lang.sh
-
-# mute-unmute micro script
-cp files/scripts/mute-micro.sh $HOME/scripts/mute-micro.sh      
-cp -r files/scripts/icons $HOME/scripts/icons
 pamac-install alsa-utils
 pamac-install yad
-
 pamac-install volumeicon
-
 pamac-install picom
-cp files/picom-conf $HOME/.config/picom/picom.conf
-
-pamac-install lolcat             
+pamac-install lolcat  
+pamac-install polkit-dumb-agent-git 
+pamac-install network-manager-applet  
 
 # system-stats-server for awesome widgets
 cd $HOME/software
@@ -86,6 +76,8 @@ cd $HOME/BestOS
 
 echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
 
-
+#! configs, scripts, themes, etc
+cp -r files/.config $HOME/.config
+cp -r files/scripts $HOME/scripts
 
 
