@@ -3,10 +3,11 @@
 # this script completelly installs BestOS to a freshly installed minimal Arch Linux system
 
 #! creating all neccessary directories      
+sudo pacman -S rsync
 sudo mkdir /etc/sddm.conf.d
-mkdir $HOME/scripts
+mkdir $HOME/scripts 
 mkdir $HOME/software
-mkdir $HOME/.config
+mkdir $HOME/.config 
 
 
 #! PAMAC
@@ -77,7 +78,7 @@ cd $HOME/BestOS
 echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
 
 #! configs, scripts, themes, etc
-cp -r files/.config $HOME
-cp -r files/scripts $HOME
+rsync -r files/.config/ $HOME/.config/
+rsync -r files/scripts/ $HOME/scripts/
 
 
