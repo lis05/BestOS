@@ -2,8 +2,7 @@
 
 # this script completelly installs BestOS to a freshly installed minimal Arch Linux system
 
-#! creating all neccessary directories      
-sudo pacman -S rsync
+#! creating all neccessary directories     
 sudo mkdir /etc/sddm.conf.d
 mkdir $HOME/scripts 
 mkdir $HOME/software
@@ -35,6 +34,8 @@ function pamac-install() {
         sudo pamac install --no-confirm "$package"
     done
 }
+
+pacman-install rsync # tool for merging directories
 
 #! basic software
 # Xorg, video drivers, openGL
