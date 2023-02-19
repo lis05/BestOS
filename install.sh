@@ -19,6 +19,7 @@ git clone https://aur.archlinux.org/pamac-aur.git
 cd pamac-aur
 makepkg -si --noconfirm
 cd ..
+sudo cp files/pamac.conf /etc/pamac.conf
 
 
 function pacman-install() {
@@ -49,7 +50,7 @@ pamac-install alsa-utils
 
 # AwesomeWM
 pacman-install awesome         
-sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
+sudo cp files/sddm-config /etc/sddm.conf.d/default.conf # SDDM
 
 #! software
 pamac-install xterm terminology  
