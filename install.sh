@@ -7,6 +7,8 @@ sudo mkdir /etc/sddm.conf.d
 mkdir $HOME/scripts
 mkdir $HOME/software
 mkdir $HOME/.config
+mkdir $HOME/.config/picom
+mkdir $HOME/.config/awesome
 
 
 #! PAMAC
@@ -42,24 +44,38 @@ pacman-install xorg-server xf86-video-amdgpu mesa
 pacman-install sddm                                                 
 sudo systemctl enable sddm
 
-# python
+# libs and other stuff
 pamac-install python3 python-pip
+python3 -m pip install psutil pip
+pamac-install alsa-utils
 
 # AwesomeWM
 pacman-install awesome         
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf
 
 #! software
-pacman-install xterm terminology                            # terminals
-pacman-install firefox                                      # webbrowsers
-pamac-install kate micro vim                                # text editors  
-pacman-install telegram-dekstop                             # messagers
-pamac-install brightnessctl                             
-pamac-install flameshot                                     # screenshot tool
-pamac-install rofi                                     
-pamac-install rofi-pass                                   
-cp files/change-lang.sh $HOME/scripts/change-lang.sh
-pacman-install lolcat             
+pamac-install xterm terminology  
+pamac-install firefox                                           
+pamac-install kate micro vim                  
+pamac-install telegram-desktop                                 
+pamac-install brightnessctl                       
+pamac-install flameshot                                   
+pamac-install rofi rofi-pass   
+                             
+cp files/scripts/change-lang.sh $HOME/scripts/change-lang.sh
+
+# mute-unmute micro script
+cp files/scripts/mute-micro.sh $HOME/scripts/mute-micro.sh      
+cp -r files/scripts/icons $HOME/scripts/icons
+pamac-install alsa-utils
+pamac-install yad
+
+pamac-install volumeicon
+
+pamac-install picom
+cp files/picom-conf $HOME/.config/picom/picom.conf
+
+pamac-install lolcat             
 
 # system-stats-server for awesome widgets
 cd $HOME/software
