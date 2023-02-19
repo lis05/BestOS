@@ -70,6 +70,8 @@ pamac-install feh
 pamac-install polkit-dumb-agent-git 
 pamac-install network-manager-applet  
 
+pamac-install ttf-ubuntu-font-family
+
 # system-stats-server for awesome widgets
 cd $HOME/software
 git clone https://github.com/lis05/system-stats-server
