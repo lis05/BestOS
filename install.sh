@@ -55,7 +55,7 @@ sudo cp files/sddm-config /etc/sddm.conf.d/default.conf # SDDM
 
 #! software
 pamac-install xterm terminology  
-pamac-install firefox                                           
+pamac-install firefox                            
 pamac-install kate micro vim                  
 pamac-install telegram-desktop                                 
 pamac-install brightnessctl                       
@@ -65,7 +65,8 @@ pamac-install alsa-utils
 pamac-install yad
 pamac-install volumeicon
 pamac-install picom
-pamac-install lolcat  
+pamac-install lolcat figlet     
+pamac-install feh          
 pamac-install polkit-dumb-agent-git 
 pamac-install network-manager-applet  
 
@@ -76,10 +77,24 @@ cd system-stats-server
 bash install.sh
 cd $HOME/BestOS
 
-echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
 
 #! configs, scripts, themes, etc
 rsync -r files/.config/ $HOME/.config/
+rsync -r files/software/ $HOME/software/
 rsync -r files/scripts/ $HOME/scripts/
+
+#! BestOS software install
+cd files/software
+
+cd random-wallpaper
+sudo bash install
+cd ..
+
+
+cd $HOME
+
+echo -e "DONE! BestOS has been installed, reboot now to see the changes\n" | lolcat
+figlet "BestOS" | lolcat
+
 
 
