@@ -71,7 +71,12 @@ pamac-install polkit-dumb-agent-git
 pamac-install network-manager-applet  
 
 pamac-install ttf-ubuntu-font-family
-
+pamac-install ttf-carlito
+pamac-install ttf-dejavu 
+pamac-install ttf-font-awesome 
+pamac-install ttf-hack 
+pamac-install ttf-liberation
+pamac-install ttf-opensans
 # system-stats-server for awesome widgets
 cd $HOME/software
 git clone https://github.com/lis05/system-stats-server
@@ -97,6 +102,7 @@ cd $HOME
 
 echo -e "DONE! BestOS has been installed, reboot now to see the changes\n" | lolcat
 figlet "BestOS" | lolcat
+echo "DISABLE PICOM if you're running a VM"
 
 
 
