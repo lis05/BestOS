@@ -45,8 +45,7 @@ sudo systemctl enable sddm
 
 # libs and other stuff
 pamac-install python3 python-pip
-python3 -m pip install psutil pip
-pamac-install alsa-utils
+python3 -m pip install psutil pid
 
 # AwesomeWM
 pacman-install awesome         
@@ -78,7 +77,7 @@ cd $HOME/BestOS
 echo "DONE! BestOS has been installed, reboot now to see the changes" | lolcat
 
 #! configs, scripts, themes, etc
-cp -r files/.config $HOME/.config
-cp -r files/scripts $HOME/scripts
+cp -r files/.config $HOME
+cp -r files/scripts $HOME
 
 
