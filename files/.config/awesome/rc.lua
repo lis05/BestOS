@@ -403,7 +403,7 @@ awful.spawn.with_shell("killall volumeicon")
 
 
 --? AUTOSTART APPLICATIONS
-awful.spawn.with_shell("picom") -- compositor
+--awful.spawn.with_shell("picom") -- compositor
 awful.spawn.with_shell(HOME.."/scripts/mirror-monitors.sh") -- mirror both monitors
 awful.spawn.with_shell("brightnessctl set 50%") -- set brightness
 awful.spawn.with_shell("xset s off && xset -dpms && xset s noblank") -- turn off display blanking

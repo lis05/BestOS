@@ -10,15 +10,18 @@ mkdir $HOME/.config
 
 
 #! PAMAC
-sudo pacman -S --noconfirm --needed git base-devel
-git clone https://aur.archlinux.org/libpamac-aur.git
-cd libpamac-aur
-makepkg -si --noconfirm
-cd ..
-git clone https://aur.archlinux.org/pamac-aur.git
-cd pamac-aur
-makepkg -si --noconfirm
-cd ..
+pacman --version
+if [[ "$?" != "0" ]]; then
+    sudo pacman -S --noconfirm --needed git base-devel
+    git clone https://aur.archlinux.org/libpamac-aur.git
+    cd libpamac-aur
+    makepkg -si --noconfirm
+    cd ..
+    git clone https://aur.archlinux.org/pamac-aur.git
+    cd pamac-aur
+    makepkg -si --noconfirm
+    cd ..
+fi
 sudo cp files/pamac.conf /etc/pamac.conf
 
 
