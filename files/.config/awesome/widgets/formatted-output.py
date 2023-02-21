@@ -11,7 +11,7 @@ if sys.argv[1]=="cpu_info_widget":
     temp=float(get("cpu_temp"))
     
     freq/=1000
-    print(f" {freq:1.1f}GHz  {load:04}%  {temp}°C")
+    print(f"freq {freq:1.1f}GHz | usage {load:04}% | temp {temp}°C")
     exit(0)
 
 if sys.argv[1]=="net_info_widget":
@@ -53,7 +53,7 @@ if sys.argv[1]=="net_info_widget":
         recv=f" {recv//1000} MB"
     else:
         recv=f"{recv//1000} MB"
-    print(f"🡹 {sent} 🡻 {recv}")
+    print(f"up {sent} | down {recv}")
     exit(0)
 
 if sys.argv[1]=="memory_info_widget":
@@ -64,7 +64,7 @@ if sys.argv[1]=="memory_info_widget":
     swap/=1e9
 
 
-    print(f" {mem:.1f}GB | {swap:.1f}GB")
+    print(f"mem {mem:.1f} GB | swap {swap:.1f} GB")
     exit(0)
 
 if sys.argv[1]=="os_info_widget":
@@ -72,22 +72,22 @@ if sys.argv[1]=="os_info_widget":
     uptime=int(float(get("uptime")))
     h=uptime//3600
     m=(uptime%3600)//60
-    print(f"{kernel}, {h:02}:{m:02}")
+    print(f"kernel {kernel} | uptime {h:02}:{m:02}")
     exit(0)
 
 if sys.argv[1]=="battery_info_widget":
     percentage=float(get("battery_percentage"))
     charging=get("battery_charging")
     if charging=="True":
-        charging="🡹"
+        charging="charging"
     else:
-        charging="🡻"
+        charging="discharging"
     left=int(float(get("battery_left")))
     h=left//3600
     m=(left%3600)//60
     if h>100:
         h=m=99
-    print(f"🔋 {percentage:.1f}% {h:02}:{m:02} {charging} ")
+    print(f"bat {percentage:.1f}% {h:02}:{m:02} {charging}")
     exit(0)
 
 if sys.argv[1]=="disks_info_widget":
@@ -144,5 +144,5 @@ if sys.argv[1]=="disks_info_widget":
     
     used=int(float(get("disks_used")))//1000000000
     total=int(float(get("disks_total")))//1000000000
-    print(f"🖴 {used} GB / {total} GB, 🡹 {write} 🡻 {read}")
+    print(f"disks {used} GB | write {write} | read {read}")
     exit(0)

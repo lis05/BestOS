@@ -70,6 +70,7 @@ pamac-install feh
 pamac-install polkit-dumb-agent-git 
 pamac-install network-manager-applet  
 
+# some fonts
 pamac-install ttf-ubuntu-font-family
 pamac-install ttf-carlito
 pamac-install ttf-dejavu 
@@ -77,6 +78,7 @@ pamac-install ttf-font-awesome
 pamac-install ttf-hack 
 pamac-install ttf-liberation
 pamac-install ttf-opensans
+
 # system-stats-server for awesome widgets
 cd $HOME/software
 git clone https://github.com/lis05/system-stats-server
