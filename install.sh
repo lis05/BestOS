@@ -10,7 +10,7 @@ mkdir $HOME/.config
 
 
 #! PAMAC
-pacman --version
+pamac --version
 if [[ "$?" != "0" ]]; then
     sudo pacman -S --noconfirm --needed git base-devel
     git clone https://aur.archlinux.org/libpamac-aur.git
