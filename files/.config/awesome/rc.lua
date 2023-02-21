@@ -46,7 +46,7 @@ local controlkey = "Control"
 
 
 --? DEFAULT APPS =====================================
-local terminal = "terminology"
+local terminal = "kitty"
 local editor = "kate"
 
 

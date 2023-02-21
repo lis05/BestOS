@@ -54,7 +54,7 @@ pacman-install awesome
 sudo cp files/sddm-config /etc/sddm.conf.d/default.conf # SDDM
 
 #! software
-pamac-install xterm terminology  
+pamac-install xterm kitty  
 pamac-install firefox                            
 pamac-install kate micro vim                  
 pamac-install telegram-desktop                                 
@@ -65,7 +65,7 @@ pamac-install alsa-utils
 pamac-install yad
 pamac-install volumeicon
 pamac-install picom
-pamac-install lolcat figlet     
+pamac-install lolcat figlet neofetch    
 pamac-install feh          
 pamac-install polkit-dumb-agent-git 
 pamac-install network-manager-applet  
