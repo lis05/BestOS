@@ -28,13 +28,19 @@ sudo cp files/pamac.conf /etc/pamac.conf
 function pacman-install() {
     for package in "$@"; do
         echo -e "\033[1;35mInstalling $package (pacman)\033[0m"
-        sudo pacman -S --noconfirm --needed "$package"
+        pacman -Q "$package"
+        if [[ "$?" != "0" ]]; then
+            sudo pacman -S --noconfirm --needed "$package"
+        fi
     done
 }
 function pamac-install() {
     for package in "$@"; do
         echo -e "\033[1;35mInstalling $package (pamac)\033[0m"
-        sudo pamac install --no-confirm "$package"
+        pacman -Q "$package"
+        if [[ "$?" != "0" ]]; then
+            sudo pamac install --no-confirm "$package"
+        fi
     done
 }
 

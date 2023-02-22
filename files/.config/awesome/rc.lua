@@ -116,7 +116,8 @@ local UNDERLINE_MARGIN=2
 local WIBAR_HEIGHT=26
 
 awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.suit.floating)
+    --awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.suit.floating)
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.suit.tile.right)
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
@@ -240,27 +241,27 @@ add_global_keybinding(
 )
 
 add_global_keybinding(
+    {modkey}, "e",
+    function() awful.spawn.with_shell("rofi -show run") end,
+    "run rofi -show run"
+)
+
+add_global_keybinding(
     {altkey}, "#52", -- z
     function() awful.spawn.with_shell(HOME.."/scripts/change-lang.sh") end,
     "change language"
 )
 
-add_global_keybinding(
-    {modkey}, "s", 
-    hotkeys_popup.show_help,
-    "show keybindings help"
-)
+--dd_global_keybinding(
+--    {modkey}, "s", 
+--    hotkeys_popup.show_help,-- bugged
+--    "show keybindings help"
+--)
 
 add_global_keybinding(
     {modkey}, "p", 
     function() awful.spawn.with_shell("rofi-pass") end,
     "run password panager"
-)
-
-add_global_keybinding(
-    {modkey}, "s", 
-    hotkeys_popup.show_help,
-    "show keybindings help"
 )
 
 add_global_keybinding(
@@ -274,6 +275,7 @@ add_global_keybinding(
     restart_awesome,
     "restart awesome"
 )
+
 
 -- workspace keybindings
 for i = 1, 9 do
@@ -338,6 +340,63 @@ add_client_keybinding(
     "(un)mazimize client"
 )
 
+-- client manipulation 
+add_client_keybinding(
+    {modkey}, "Left",
+    function() awful.client.focus.bydirection("left") end,
+    "focus client on the left"
+)
+
+add_client_keybinding(
+    {modkey}, "Right",
+    function() awful.client.focus.bydirection("right") end,
+    "focus client on the right"
+)
+
+add_client_keybinding(
+    {modkey}, "Up",
+    function() awful.client.focus.bydirection("up") end,
+    "focus client on the top"
+)
+
+add_client_keybinding(
+    {modkey}, "Down",
+    function() awful.client.focus.bydirection("down") end,
+    "focus client on the bottom"
+)
+
+add_client_keybinding(
+    {modkey,shiftkey}, "Left",
+    function() awful.client.swap.bydirection("left") end,
+    "swap client on the left"
+)
+
+add_client_keybinding(
+    {modkey,shiftkey}, "Right",
+    function() awful.client.swap.bydirection("right") end,
+    "swap client on the right"
+)
+
+add_client_keybinding(
+    {modkey,shiftkey}, "Up",
+    function() awful.client.swap.bydirection("up") end,
+    "swap client on the top"
+)
+
+add_client_keybinding(
+    {modkey,shiftkey}, "Down",
+    function() awful.client.swap.bydirection("down") end,
+    "swap client on the bottom"
+)
+
+add_client_keybinding(
+    {modkey}, "space",
+    function() awful.client.focus.byidx(1) end,
+    "focus the next client"
+)
+
+
+-- TODO ADD KEYBINDINGS TO CHANGE CLIENT'S SIZE
 
 --? CLIENT MOUSEBINDINGS =====================================
 local clientbuttons = gears.table.join()
@@ -386,6 +445,7 @@ awful.rules.rules = {
 
 --? SIGNALS =====================================
 client.connect_signal("manage", function (c)
+    if not awesome.startup then awful.client.setslave(c) end
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
@@ -393,8 +453,105 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 end)
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus;end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal;end)
+--client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus;end)
+--client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal;end)
+
+-- Animate active borders
+-- Gradient generator, adapted from https://krazydad.com/tutorials/makecolors.php
+local border_animate_colours = {}
+local len=0
+
+local hexcolor=function(red,green,blue)
+    return "#"..string.format("%06x",red*256*256+green*256+blue)
+end
+
+local generate_colors=function()
+    local red=255
+    local green=0
+    local blue=0
+    local step=6
+    table.insert(border_animate_colours,hexcolor(red,green,blue))
+    len=len+1
+    -- #ff0000 -> #ffff00
+    while green ~= 255 do
+        green=green+step
+        if green>=255 then green=255 end
+        table.insert(border_animate_colours,hexcolor(red,green,blue))
+        len=len+1
+    end
+    -- #ffff00 -> #00ff00
+    while red ~= 0 do
+        red=red-step
+        if red<=0 then red=0 end
+        table.insert(border_animate_colours,hexcolor(red,green,blue))
+        len=len+1
+    end
+    -- #00ff00 -> #00ffff
+    while blue ~= 255 do
+        blue=blue+step
+        if blue>=255 then blue=255 end
+        table.insert(border_animate_colours,hexcolor(red,green,blue))
+        len=len+1
+    end
+
+    -- #00ffff -> #0000ff
+    while green ~= 0 do
+        green=green-step
+        if green<=0 then green=0 end
+        table.insert(border_animate_colours,hexcolor(red,green,blue))
+        len=len+1
+    end
+
+    -- #0000ff -> #ff00ff
+    while red ~= 255 do
+        red=red+step
+        if red>=255 then red=255 end
+        table.insert(border_animate_colours,hexcolor(red,green,blue))
+        len=len+1
+    end
+
+    -- #ff00ff -> #ff0000
+    while blue ~= 0 do
+        blue=blue-step
+        if blue<=0 then blue=0 end
+        table.insert(border_animate_colours,hexcolor(red,green,blue))
+        len=len+1
+    end
+end
+
+generate_colors()
+awful.spawn.with_shell("notify-send "..hexcolor(255,255,127))
+local borderLoop = 1
+local border_animation_timer = gears.timer {
+  timeout   = 0.03,
+  call_now  = true,
+  autostart = true,
+  callback  = function()
+    -- debug
+    -- naughty.notify({ preset = naughty.config.presets.critical, title = "- " .. borderLoop .. " -", bg = border_animate_colours[borderLoop], notification_border_width = 0 })
+    local c = client.focus
+    if c then
+        c.border_color = border_animate_colours[borderLoop]
+        borderLoop = borderLoop + 1
+        if borderLoop >= len then borderLoop=1 end
+    end
+  end
+}
+
+-- window borders
+-- client.connect_signal("focus", function(c) c.border_color = "#ecbc34" end)
+client.connect_signal("focus", function(c)
+c.border_color = border_animate_colours[borderLoop]
+end)
+
+client.connect_signal("border_animation_timer:timeout", function(c)
+  c.border_color = border_animate_colours[borderLoop]
+end)
+
+-- Make border transparent black on unfocus
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+
 
 
 --! KILL ALREADY RUNNING PROGRAMS
@@ -403,7 +560,7 @@ awful.spawn.with_shell("killall volumeicon")
 
 
 --? AUTOSTART APPLICATIONS
---awful.spawn.with_shell("picom") -- compositor
+awful.spawn.with_shell("picom") -- compositor
 awful.spawn.with_shell(HOME.."/scripts/mirror-monitors.sh") -- mirror both monitors
 awful.spawn.with_shell("brightnessctl set 50%") -- set brightness
 awful.spawn.with_shell("xset s off && xset -dpms && xset s noblank") -- turn off display blanking

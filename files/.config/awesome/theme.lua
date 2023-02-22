@@ -24,10 +24,10 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = 0
+theme.useless_gap   = dpi(3)
+theme.border_width  = 2
 theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
+theme.border_focus  = "#ff0000"
 theme.border_marked = "#91231c"
 
 -- Generate taglist squares:
@@ -65,6 +65,9 @@ theme.memory_info_widget_color="#ff00fb"
 theme.battery_info_widget_color="#fff700"
 theme.net_info_widget_color="#AC7560"
 theme.disks_info_widget_color="#009F6B"
+
+
+
 
 return theme
 
