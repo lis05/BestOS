@@ -77,6 +77,7 @@ pamac-install picom
 pamac-install lolcat figlet neofetch    
 pamac-install feh          
 pamac-install polkit-dumb-agent-git 
+pamac-install cpupower-gui
 pamac-install network-manager-applet  
 
 # some fonts
@@ -105,6 +106,10 @@ rsync -r files/scripts/ $HOME/scripts/
 cd files/software
 
 cd random-wallpaper
+bash install.sh
+cd ..
+
+cd cpufreq
 bash install.sh
 cd ..
 
