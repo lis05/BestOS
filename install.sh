@@ -117,9 +117,9 @@ bash install.sh
 cd ..
 
 # do these yourself after installation
-#cd rgbw-cursors
-#bash install.sh
-#cd ..
+cd rgbw-cursors
+bash install.sh
+cd ..
 
 
 cd $HOME
