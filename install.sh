@@ -7,6 +7,7 @@ sudo mkdir /etc/sddm.conf.d
 mkdir $HOME/scripts 
 mkdir $HOME/software
 mkdir $HOME/.config 
+mkdir $HOME/.icons
 
 
 #! PAMAC
