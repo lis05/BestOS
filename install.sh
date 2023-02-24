@@ -74,11 +74,12 @@ pamac-install alsa-utils
 pamac-install yad
 pamac-install volumeicon
 pamac-install picom
-pamac-install lolcat figlet neofetch    
+pamac-install fortune-mod lolcat figlet neofetch    
 pamac-install feh          
 pamac-install polkit-dumb-agent-git 
 pamac-install cpupower-gui
 pamac-install network-manager-applet  
+pamac-install xorg-xrdb xorg-xcursorgen
 
 # some fonts
 pamac-install ttf-ubuntu-font-family
@@ -98,6 +99,7 @@ cd $HOME/BestOS
 
 
 #! configs, scripts, themes, etc
+cp files/.Xresources $HOME/.Xresources
 rsync -r files/.config/ $HOME/.config/
 rsync -r files/software/ $HOME/software/
 rsync -r files/scripts/ $HOME/scripts/
@@ -110,6 +112,10 @@ bash install.sh
 cd ..
 
 cd cpufreq
+bash install.sh
+cd ..
+
+cd rgbw-cursors
 bash install.sh
 cd ..
 

@@ -1,0 +1,12 @@
+xterm*renderFont: true
+xterm*faceName: Ubuntu Mono
+xterm*faceSize: 13
+
+xterm*savelines: 2048
+
+xterm*rightScrollBar: true
+xterm*ScrollBar: true
+
+xterm*background: #222222
+xterm*foreground: #eeeeee
+xterm*selectToClipboard: false
